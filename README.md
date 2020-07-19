@@ -27,7 +27,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.kimcore:inko.kt:1.1'
+    implementation 'com.github.kimcore:inko.kt:1.0'
 }
 ```
 Maven
@@ -43,7 +43,7 @@ Maven
     <dependency>1
         <groupId>com.github.kimcore</groupId>
         <artifactId>inko.kt</artifactId>
-        <version>1.1</version>
+        <version>1.0</version>
     </dependency>
 </dependencies>
 ```
