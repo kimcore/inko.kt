@@ -19,15 +19,33 @@
 ## 설치
 Gradle
 ```gradle
-implementation 'com.github.kimcore:inko.kt:1.0'
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+dependencies {
+    implementation 'com.github.kimcore:inko.kt:1.0'
+}
 ```
 Maven
 ```maven
-<dependency>
-    <groupId>com.github.kimcore</groupId>
-    <artifactId>inko.kt</artifactId>
-    <version>1.0</version>
-</dependency>
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.github.kimcore</groupId>
+        <artifactId>inko.kt</artifactId>
+        <version>1.0</version>
+    </dependency>
+</dependencies>
 ```
 ## 사용법
 ```kotlin
