@@ -49,16 +49,16 @@ Maven
 ```
 ## 사용법
 ```kotlin
-import com.github.kimcore.inko
-val myInko = inko.Inko()
+import com.github.kimcore.Inko
+val inko = Inko()
 ```
 ### 영어 (en) -> 한글 (ko)
 ```kotlin
-println(myInko.ko2en('dkssudgktpdy!')) // 안녕하세요!
+println(inko.en2ko('dkssudgktpdy!')) // 안녕하세요!
 ```
 ### 한글 (ko) -> 영어 (en)
 ```kotlin
-println(myInko.en2ko('ㅗ디ㅣㅐ, 째깅!')) // Hello, World!
+println(inko.ko2en('ㅗ디ㅣㅐ, 째깅!')) // Hello, World!
 ```
 ## 설정
 |이름|타입|기본값|설명| 
@@ -67,16 +67,16 @@ println(myInko.en2ko('ㅗ디ㅣㅐ, 째깅!')) // Hello, World!
 
 예시:
 ```kotlin
-import com.github.kimcore.inko
+import com.github.kimcore.Inko
 
 // Inko 인스턴스를 생성할때 설정 부여하기
-val myInko = inko.Inko(allowDoubleConsonant = true)
+val inko = Inko(allowDoubleConsonant = true)
 
 // config 함수를 사용해 설정 부여하기
-myInko.config(allowDoubleConsonant = true)
+inko.config(allowDoubleConsonant = true)
 
 // en2ko 함수의 인자로 설정 부여하기
-myInko.en2ko("djawnstlr", allowDoubleConsonant  = true)
+inko.en2ko("djawnstlr", allowDoubleConsonant  = true)
 ```
 ## 관련 프로젝트
 * [inko-js](https://github.com/738/inko) - Inko javascript library
