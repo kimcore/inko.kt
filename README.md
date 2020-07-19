@@ -46,6 +46,7 @@ println(myInko.en2ko('ㅗ디ㅣㅐ, 째깅!')) // Hello, World!
 |이름|타입|기본값|설명| 
 |---|---|---| --------------- |
 |allowDoubleConsonant|Boolean|false|복자음 설정여부|
+
 예시:
 ```kotlin
 import com.github.kimcore.inko
