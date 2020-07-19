@@ -4,10 +4,10 @@
 </h1>
 <p align="center">
 <a href="https://github.com/kimcore/inko.kt/releases">
-  <img src="https://jitpack.io/v/kimcore/inko.kt.svg" />
+  <img src="https://img.shields.io/jitpack/v/github/kimcore/inko.kt?style=flat-square" />
 </a>
 <a href="https://github.com/kimcore/inko.kt/blob/master/LICENSE">
-  <img src="https://img.shields.io/github/license/kimcore/inko.kt.svg" />
+  <img src="https://img.shields.io/github/license/kimcore/inko.kt?style=flat-square" />
 </a>
 </p>
 <p align="center">
