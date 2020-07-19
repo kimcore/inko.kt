@@ -70,13 +70,13 @@ println(myInko.en2ko('ㅗ디ㅣㅐ, 째깅!')) // Hello, World!
 import com.github.kimcore.inko
 
 // Inko 인스턴스를 생성할때 설정 부여하기
-val myInko = inko.Inko(allowDoubleConsonant=true)
+val myInko = inko.Inko(allowDoubleConsonant = true)
 
 // config 함수를 사용해 설정 부여하기
-myInko.config(allowDoubleConsonant=true)
+myInko.config(allowDoubleConsonant = true)
 
 // en2ko 함수의 인자로 설정 부여하기
-myInko.en2ko("djawnstlr", allowDoubleConsonant=true)
+myInko.en2ko("djawnstlr", allowDoubleConsonant  = true)
 ```
 ## 관련 프로젝트
 * [inko-js](https://github.com/738/inko) - Inko javascript library

@@ -1,3 +1,5 @@
+package com.github.kimcore.inko
+
 import kotlin.math.floor
 
 class Inko(private var allowDoubleConsonant: Boolean = false) {
