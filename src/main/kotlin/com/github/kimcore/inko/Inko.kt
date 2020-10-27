@@ -2,28 +2,42 @@ package com.github.kimcore.inko
 
 import kotlin.math.floor
 
+@Suppress("unused", "DuplicatedCode")
 class Inko(private var allowDoubleConsonant: Boolean = false) {
     private val eng = "rRseEfaqQtTdwWczxvgASDFGZXCVkoiOjpuPhynbmlYUIHJKLBNM"
     private val kor = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎㅁㄴㅇㄹㅎㅋㅌㅊㅍㅏㅐㅑㅒㅓㅔㅕㅖㅗㅛㅜㅠㅡㅣㅛㅕㅑㅗㅓㅏㅣㅠㅜㅡ"
     private val chosung = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ"
     private val jungsung = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ"
     private val jongsung = "ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ"
-    private val firstMouem = 28
+    private val firstMoeum = 28
     private val rk = 44032
     private val glg = 55203
     private val r = 12593
     private val l = 12643
 
-    private val engIndex = fun(en: String): MutableMap<Char, Int> {
+    companion object {
+        private val inko = Inko()
+        val String.asKorean: String
+            get() = inko.en2ko(this, false)
+
+        val String.asKoreanWithDoubleConsonant: String
+            get() = inko.en2ko(this, true)
+
+        val String.asEnglish: String
+            get() = inko.ko2en(this)
+    }
+
+    private val engIndex = run {
         val x = mutableMapOf<Char, Int>()
-        en.forEachIndexed { i, c -> x[c] = i }
-        return x
-    }(eng)
-    private val korIndex = fun(kr: String): MutableMap<Char, Int> {
+        eng.forEachIndexed { i, c -> x[c] = i }
+        x
+    }
+
+    private val korIndex = run {
         val x = mutableMapOf<Char, Int>()
-        kr.forEachIndexed { i, c -> x[c] = i }
-        return x
-    }(kor)
+        kor.forEachIndexed { i, c -> x[c] = i }
+        x
+    }
 
     private val connectableConsonant = mapOf(
         "ㄱㅅ" to "ㄳ",
@@ -49,7 +63,7 @@ class Inko(private var allowDoubleConsonant: Boolean = false) {
         "ㅡㅣ" to "ㅢ"
     )
 
-    private fun isVowel(e: Char) = korIndex[e]!! >= firstMouem
+    private fun isVowel(e: Char) = korIndex[e]!! >= firstMoeum
 
     private fun generate(args: MutableList<Int>) =
         (44032 + args[0] * 588 + args[1] * 28 + args[2] + 1).toChar().toString()
@@ -295,6 +309,58 @@ class Inko(private var allowDoubleConsonant: Boolean = false) {
                         }
                         if (wnd2 == -1) wnd1 = kor.indexOf(jungsung[wnd]) // 복모음이 아니라면
                         arrayOf(-1, wnd1, wnd2, -1, -1)
+                    }
+                    jongsung.indexOf(char) > -1 -> {
+                        val whd = jongsung.indexOf(char)
+                        var whd1 = whd
+                        var whd2 = -1
+                        when (whd) {
+                            jongsung.indexOf("ㄳ") -> {
+                                whd1 = kor.indexOf("ㄱ")
+                                whd2 = kor.indexOf("ㅅ")
+                            }
+                            jongsung.indexOf("ㄵ") -> {
+                                whd1 = kor.indexOf("ㄴ")
+                                whd2 = kor.indexOf("ㅈ")
+                            }
+                            jongsung.indexOf("ㄶ") -> {
+                                whd1 = kor.indexOf("ㄴ")
+                                whd2 = kor.indexOf("ㅎ")
+                            }
+                            jongsung.indexOf("ㄺ") -> {
+                                whd1 = kor.indexOf("ㄹ")
+                                whd2 = kor.indexOf("ㄱ")
+                            }
+                            jongsung.indexOf("ㄻ") -> {
+                                whd1 = kor.indexOf("ㄹ")
+                                whd2 = kor.indexOf("ㅁ")
+                            }
+                            jongsung.indexOf("ㄼ") -> {
+                                whd1 = kor.indexOf("ㄹ")
+                                whd2 = kor.indexOf("ㅂ")
+                            }
+                            jongsung.indexOf("ㄽ") -> {
+                                whd1 = kor.indexOf("ㄹ")
+                                whd2 = kor.indexOf("ㅅ")
+                            }
+                            jongsung.indexOf("ㄾ") -> {
+                                whd1 = kor.indexOf("ㄹ")
+                                whd2 = kor.indexOf("ㅌ")
+                            }
+                            jongsung.indexOf("ㄿ") -> {
+                                whd1 = kor.indexOf("ㄹ")
+                                whd2 = kor.indexOf("ㅍ")
+                            }
+                            jongsung.indexOf("ㅀ") -> {
+                                whd1 = kor.indexOf("ㄹ")
+                                whd2 = kor.indexOf("ㅎ")
+                            }
+                            jongsung.indexOf("ㅄ") -> {
+                                whd1 = kor.indexOf("ㅂ")
+                                whd2 = kor.indexOf("ㅅ")
+                            }
+                        }
+                        arrayOf(whd1, whd2, -1, -1, -1)
                     }
                     else -> arrayOf(-1, -1, -1, -1, -1)
                 }

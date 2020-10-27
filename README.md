@@ -26,7 +26,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.kimcore:inko.kt:1.0'
+    implementation 'com.github.kimcore:inko.kt:1.1'
 }
 ```
 Maven
@@ -42,23 +42,26 @@ Maven
     <dependency>
         <groupId>com.github.kimcore</groupId>
         <artifactId>inko.kt</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
     </dependency>
 </dependencies>
 ```
 ## 사용법
+inko.kt는 인스턴스를 생성하거나, 코틀린의 extension property를 사용하여 변환할 수 있습니다.
 ```kotlin
 import com.github.kimcore.inko.Inko
+import com.github.kimcore.inko.Inko.Companion.asKorean
+import com.github.kimcore.inko.Inko.Companion.asEnglish
 
 val inko = Inko()
-```
-### 영어 (en) -> 한글 (ko)
-```kotlin
+
+// 영어 (en) -> 한글 (ko)
 println(inko.en2ko("dkssudgktpdy!")) // 안녕하세요!
-```
-### 한글 (ko) -> 영어 (en)
-```kotlin
-println(inko.ko2en("ㅗ디ㅣㅐ, 째깅!")) // Hello, World!
+println("dkssudgktpdy!".asKorean) // 안녕하세요!
+
+// 한글 (ko) -> 영어 (en)
+println(inko.ko2en("ㅗ디ㅣㅐ, 재깅!")) // hello, world!
+println("ㅗ디ㅣㅐ, 재깅!".asEnglish) // hello, world!
 ```
 ## 설정
 |이름|타입|기본값|설명| 
@@ -68,6 +71,7 @@ println(inko.ko2en("ㅗ디ㅣㅐ, 째깅!")) // Hello, World!
 예시:
 ```kotlin
 import com.github.kimcore.Inko
+import com.github.kimcore.Inko.Companion.asKoreanWithDoubleConsonant
 
 // Inko 인스턴스를 생성할때 설정 부여하기
 val inko = Inko(allowDoubleConsonant = true)
@@ -76,7 +80,10 @@ val inko = Inko(allowDoubleConsonant = true)
 inko.config(allowDoubleConsonant = true)
 
 // en2ko 함수의 인자로 설정 부여하기
-inko.en2ko("dhk toswm!", allowDoubleConsonant  = true)
+inko.en2ko("dhk toswm!", allowDoubleConsonant = true)
+
+// Extension property 사용시, String.asKoreanWithDoubleConsonant 사용
+"dhk toswm!".asKoreanWithDoubleConsonant
 ```
 ## 관련 프로젝트
 * [inko-js](https://github.com/738/inko) - Inko javascript library
