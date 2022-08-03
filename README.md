@@ -17,34 +17,14 @@
 <br />
 
 ## 설치
-Gradle
 ```gradle
-allprojects {
-    repositories {
-        maven { url 'https://jitpack.io' }
-    }
+repositories {
+    maven("https://jitpack.io")
 }
 
 dependencies {
-    implementation 'im.kimcore:inko.kt:1.1'
+    implementation("com.github.kimcore", "inko.kt", "1.2")
 }
-```
-Maven
-```xml
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-</repositories>
-
-<dependencies>
-    <dependency>
-        <groupId>im.kimcore</groupId>
-        <artifactId>inko.kt</artifactId>
-        <version>1.1</version>
-    </dependency>
-</dependencies>
 ```
 ## 사용법
 inko.kt는 인스턴스를 생성하거나, 코틀린의 extension property를 사용하여 변환할 수 있습니다.
@@ -76,8 +56,8 @@ import com.github.kimcore.Inko.Companion.asKoreanWithDoubleConsonant
 // Inko 인스턴스를 생성할때 설정 부여하기
 val inko = Inko(allowDoubleConsonant = true)
 
-// config 함수를 사용해 설정 부여하기
-inko.config(allowDoubleConsonant = true)
+// allowDoubleConsonant 변수를 변경하여 설정 부여하기
+inko.allowDoubleConsonant = true
 
 // en2ko 함수의 인자로 설정 부여하기
 inko.en2ko("dhk toswm!", allowDoubleConsonant = true)
